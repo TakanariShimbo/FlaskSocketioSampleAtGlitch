@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>チャットルーム</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <h1>らくがきアプリ</h1>
+    <button id="create_room">部屋を作成</button>
+    <button id="enter_room">部屋に入室</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+      $('#create_room').on('click', function() {
+        window.location.href = '/create';
+      });
+
+      $('#enter_room').on('click', function() {
+        window.location.href = '/enter';
+      });
+    </script>
+  </body>
+</html>

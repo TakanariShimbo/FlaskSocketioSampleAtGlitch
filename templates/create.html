@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ルーム作成</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <h1>新しいルームを作成</h1>
+    {% if rooms %}
+    <ul>
+      {% for room in rooms %}
+      <li><p>{{ room }}</p></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>まだルームが作成されていません。</p>
+    {% endif %}
+    <form id="create_room_form" method="post">
+        <input type="text" id="room_name" name="room_name" placeholder="部屋名" required>
+        <button type="submit">作成</button>
+    </form>
+    <button id="return_index">戻る</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript" charset="utf-8">
+      $('#return_index').on('click', function() {
+        window.location.href = '/';
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>チャットルーム</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <h1 id="room_title">チャットルーム</h1>
+    <p>現在の接続者数: <span id="user_count"></span>人</p>
+    <textarea id="text" name="text" rows="10" cols="60"></textarea>
+    <button id="leave">退室</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+      var socket = io();
+
+      var room = decodeURIComponent(window.location.pathname.split('/')[2]);
+      $('#room_title').text('チャットルーム: ' + room);
+
+
+      socket.emit('join_room', {room: room});
+
+
+      socket.on('count_update', function(msg) {
+        $('#user_count').html(msg.user_count);
+      });
+
+      socket.on('text_update', function(msg) {
+        $('#text').val(msg.text);
+      });
+
+      
+      $('#text').on('change keyup input', function() {
+        socket.emit('text_update_request', {room: room, text: $(this).val()});
+      });
+
+      $('#leave').on('click', function() {
+        socket.emit('leave_room', {room: room});
+        window.location.href = '/';
+      });
+    </script>
+  </body>
+</html>
