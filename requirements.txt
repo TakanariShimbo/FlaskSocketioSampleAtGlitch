@@ -1,4 +1,5 @@
+python-dotenv
 flask
 flask-socketio
 eventlet
-python-dotenv
+gunicorn
