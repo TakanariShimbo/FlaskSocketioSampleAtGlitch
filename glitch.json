@@ -1,6 +1,6 @@
 {
     "install": "pip3 install --user -r requirements.txt",
-    "start": "python3 app.py",
+    "start": "gunicorn --worker-class eventlet -w 1 app:app",
     "watch": {
       "ignore": [
         "\\.pyc$",
