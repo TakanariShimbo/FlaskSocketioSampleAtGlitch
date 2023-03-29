@@ -147,4 +147,4 @@ def _leave_room_process(str_room):
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app)
